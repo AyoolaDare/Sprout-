@@ -1,0 +1,11 @@
+
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Only allow server-side access. Client-side reads/writes are disallowed.
+    // The server will generate signed URLs for uploads.
+    // Public files (like logos) are readable via their unguessable URL.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }

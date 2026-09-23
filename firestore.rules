@@ -1,0 +1,41 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global helper for user-level ownership
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    // EXPLICIT RULES FOR USER DATA
+    // We match the base user document and any sub-document inside it
+    match /users/{userId}/{document=**} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // RULES FOR PUBLIC MIRRORS (Verification Feature)
+    // These are stored at the root, not inside /users/
+    match /publicInvoices/{invoiceId} {
+      // Anyone can read for verification (this is the public part)
+      allow read: if true;
+      
+      // Ownership check for writes/deletes
+      // resource == null handles the case where the mirror doesn't exist yet
+      // get() handles legacy documents safely
+      function isMirrorOwner() {
+        return request.auth != null && (
+          resource == null || 
+          resource.data.get('userId', '') == request.auth.uid ||
+          !('userId' in resource.data)
+        );
+      }
+
+      // Allow the owner to manage their own public receipts
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow update: if isMirrorOwner();
+      allow delete: if isMirrorOwner();
+    }
+  }
+}

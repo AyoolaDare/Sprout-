@@ -1,0 +1,117 @@
+
+@import "tailwindcss";
+
+@config "../../tailwind.config.ts";
+
+@layer base {
+  :root {
+    --background: 165 27% 96%; /* #f0f7f6 */
+    --foreground: 211 40% 12%; /* #121c2a - derived dark blue */
+    --card: 165 27% 96%; /* #f0f7f6 */
+    --card-foreground: 211 40% 12%;
+    --popover: 165 27% 96%;
+    --popover-foreground: 211 40% 12%;
+    --primary: 211 39% 23%; /* #253953 */
+    --primary-foreground: 165 27% 96%; /* #f0f7f6 */
+    --secondary: 165 27% 84%; /* #b3dad4 */
+    --secondary-foreground: 211 39% 23%;
+    --muted: 165 27% 84%; /* #b3dad4 */
+    --muted-foreground: 158 29% 30%; /* darker #4a7e6a for better contrast */
+    --accent: 165 27% 90%; /* a slightly darker #f0f7f6 for hover */
+    --accent-foreground: 211 39% 23%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 165 27% 84%; /* #b3dad4 */
+    --input: 165 27% 78%; /* a slightly darker #b3dad4 */
+    --ring: 211 39% 23%;
+    --chart-1: 211 39% 23%;
+    --chart-2: 158 29% 39%;
+    --chart-3: 164 30% 59%;
+    --chart-4: 217 91% 60%;
+    --chart-5: 36 94% 53%;
+    --radius: 0.5rem;
+    --sidebar-background: 211 39% 23%; /* #253953 */
+    --sidebar-foreground: 165 27% 96%; /* #f0f7f6 */
+    --sidebar-primary: 165 27% 96%;
+    --sidebar-primary-foreground: 211 39% 23%;
+    --sidebar-accent: 211 40% 30%;
+    --sidebar-accent-foreground: 165 27% 96%;
+    --sidebar-border: 211 40% 30%;
+    --sidebar-ring: 165 27% 96%;
+  }
+  .dark {
+    --background: 211 40% 12%; /* #121c2a - derived dark blue */
+    --foreground: 165 27% 96%; /* #f0f7f6 */
+    --card: 211 40% 15%; /* slightly lighter dark blue */
+    --card-foreground: 165 27% 96%;
+    --popover: 211 40% 12%;
+    --popover-foreground: 165 27% 96%;
+    --primary: 165 27% 90%; /* light background color as primary */
+    --primary-foreground: 211 40% 12%;
+    --secondary: 211 40% 30%;
+    --secondary-foreground: 165 27% 96%;
+    --muted: 211 40% 30%;
+    --muted-foreground: 165 27% 84%; /* #b3dad4 */
+    --accent: 211 40% 30%;
+    --accent-foreground: 165 27% 96%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 211 40% 30%;
+    --input: 211 40% 35%;
+    --ring: 165 27% 90%;
+    --chart-1: 165 27% 90%;
+    --chart-2: 158 29% 39%;
+    --chart-3: 164 30% 59%;
+    --chart-4: 217 91% 60%;
+    --chart-5: 36 94% 53%;
+    --sidebar-background: 211 40% 12%;
+    --sidebar-foreground: 165 27% 96%;
+    --sidebar-primary: 165 27% 96%;
+    --sidebar-primary-foreground: 211 40% 12%;
+    --sidebar-accent: 211 40% 30%;
+    --sidebar-accent-foreground: 165 27% 96%;
+    --sidebar-border: 211 40% 30%;
+    --sidebar-ring: 165 27% 96%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground max-w-full overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  @keyframes pulse-icon {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes fade-in-text {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-pulse-icon {
+    animation: pulse-icon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-fade-in-text {
+    animation: fade-in-text 1s ease-out forwards;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Sprout Track",
+  "short_name": "Sprout Track",
+  "description": "Manage your business growth with ease.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0f7f6",
+  "theme_color": "#253953",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
